@@ -1,0 +1,21 @@
+<head>
+    <title>BenBat</title>
+</head>
+<body>
+    <div class="container">
+        <header class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="/">BenBat</a>
+                <ul class="nav pull-right">
+                    <li>
+                        {{loginButtons}}
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="main" class="row-fluid">
+            {{> setDate}}
+            {{> datesList}}
+        </div>
+    </div>
+</body>

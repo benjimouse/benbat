@@ -1,0 +1,16 @@
+<template name="setDate">
+    <div class="setDate">
+        <form id="dateSetting" action="" method="post">
+            <label for="expectedDate">Date of Arrival:</label>
+            <input type="date" id="arrivalDate" name="arrivalDate" />
+            {{#if currentUser}}
+            Your name: {{currentUser}}
+            {{else}}
+            <label for="name">Your name:</label>
+            <input type="text" id="name" name="name" />
+            {{/if}}
+            <br>
+            <input type="submit" id="submitExpectedDate" value="save expected date" />
+        </form>
+    </div>
+</template>
