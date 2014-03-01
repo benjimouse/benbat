@@ -1,9 +1,28 @@
+function validateDate(validDate) {
+    'use strict';
+    if (Dates.findOne({arrivalDate : validDate})) {
+        return ['Date already exists', 'please try again'];
+    }
+    return [];
+}
+
 Template.setDate.events = {
-    'click input[type=submit]': function (e) {
+    'blur input[type=date]': function (e) {
+       
+},
+    'submit': function (e) {
+        if($(e.srcElement).attr('id') === 'dateSetting'){
+        console.log(e);
         e.preventDefault();
-        Dates.insert({
-            name : $('#name').val(),
-            arrivalDate : $('#arrivalDate').val()
-        });
+        var errMsgs = validateDate( $('#arrivalDate').val())
+        if (errMsgs.length === 0) {
+            Dates.insert({
+                name : $('#name').val(),
+                arrivalDate : $('#arrivalDate').val()
+            });
+        } else {
+            alert (errMsgs.join('\n'));
+        }
+        }
     }
 };
