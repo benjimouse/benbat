@@ -10,3 +10,7 @@ preserve-inputs
 bootstrap
 accounts-ui
 accounts-password
+jquery-ui-bootstrap
+jquery-ui
+router
+fullcalendar

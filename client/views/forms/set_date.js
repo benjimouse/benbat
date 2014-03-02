@@ -1,3 +1,8 @@
+$(function () {
+    'use strict';
+    $("#arrivalDate").datepicker();
+});
+
 function validateDate(validDate) {
     'use strict';
     if (Dates.findOne({arrivalDate : validDate})) {
@@ -8,21 +13,21 @@ function validateDate(validDate) {
 
 Template.setDate.events = {
     'blur input[type=date]': function (e) {
-       
-},
+        'use strict';
+    },
     'submit': function (e) {
-        if($(e.srcElement).attr('id') === 'dateSetting'){
-        console.log(e);
-        e.preventDefault();
-        var errMsgs = validateDate( $('#arrivalDate').val())
-        if (errMsgs.length === 0) {
-            Dates.insert({
-                name : $('#name').val(),
-                arrivalDate : $('#arrivalDate').val()
-            });
-        } else {
-            alert (errMsgs.join('\n'));
-        }
+        'use strict';
+        if ($(e.srcElement).attr('id') === 'dateSetting') {
+            e.preventDefault();
+            var errMsgs = validateDate($('#arrivalDate').val());
+            if (errMsgs.length === 0) {
+                Dates.insert({
+                    name : $('#name').val(),
+                    arrivalDate : $('#arrivalDate').val()
+                });
+            } else {
+                alert(errMsgs.join('\n'));
+            }
         }
     }
 };
