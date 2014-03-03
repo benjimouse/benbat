@@ -1,11 +1,8 @@
-CalEvents = new Meteor.Collection('calevents');
 Session.setDefault('editing_calevent', null);
 Session.setDefault('showEditEvent', false);
 Session.setDefault('lastMod', null);
-Meteor.Router.add({
-	'/':'homepage',
-	'/calendar':'calendar'	
-})
+
+
 
 Template.calendar.showEditEvent = function(){
 	return Session.get('showEditEvent');
@@ -26,7 +23,19 @@ Template.editEvent.events({
 	}
 })
 Template.calendar.rendered = function(){
-	$('#calendar').fullCalendar({
+	var dueEvt = CalEvents.findOne({'isDueDate': true});
+   startYear = new Date().getFullYear();
+    startMonth = new Date().getMonth();
+    if (dueEvt !== undefined){
+        startYear = dueEvt.start.getFullYear();
+        startMonth =  dueEvt.start.getMonth();
+    }
+        $('#calendar').fullCalendar({
+        //set the week to start on Monday
+        firstDay: 1,
+        //Set the date to have as the default
+            year: startYear,
+            month: startMonth,
 			dayClick:function( date, allDay, jsEvent, view ) {
 				CalEvents.insert({title:'New Event',start:date,end:date});
 				Session.set('lastMod',new Date());

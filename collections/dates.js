@@ -1,1 +1,1 @@
-Dates = new Meteor.Collection('dates');
+DueDate = new Meteor.Collection('dueDate');
