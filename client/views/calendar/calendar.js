@@ -40,7 +40,7 @@ Template.calendar.rendered = function () {
     var dueEvt = CalEvents.findOne({
         'isDueDate': true
     });
-    startYear = new Date().getFullYear();
+    var startYear = new Date().getFullYear(), 
     startMonth = new Date().getMonth();
     if (dueEvt !== undefined) {
         startYear = dueEvt.start.getFullYear();
@@ -52,7 +52,7 @@ Template.calendar.rendered = function () {
             if (CalEvents.findOne({
                 'start': date
             })) {
-                alert('You can\'t have two guesses on one day.')
+                alert('There is already a guess for that day, you can\'t have two guesses on one day.')
             } else {
                 Session.set('creating_calevent', {
                     'date': date
